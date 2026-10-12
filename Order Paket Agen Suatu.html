@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Paket Premium - Agen Suatu</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+
+<style>
+* { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+.orbitron { font-family: 'Orbitron', sans-serif; }
+
+.glass { 
+  backdrop-filter: blur(24px); 
+  background: rgba(18, 18, 30, 0.78); 
+  border: 1px solid rgba(255, 215, 0, 0.16); 
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card {
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gold-grad { background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%); }
+.green-grad { background: linear-gradient(135deg, #00c853, #1b5e20); }
+
+.step-active { 
+  border-color: #FFD700 !important; 
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.4); 
+  background: rgba(255, 215, 0, 0.15) !important;
+  color: #FFD700 !important;
+}
+
+.prod-card { 
+  border: 1px solid rgba(255,255,255,0.08); 
+  background: linear-gradient(135deg, rgba(28,28,45,0.85), rgba(12,12,22,0.95)); 
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+  border-radius: 18px;
+}
+.prod-card:hover { 
+  transform: translateY(-4px) scale(1.01); 
+  border-color: #00c853;
+  box-shadow: 0 10px 25px rgba(0, 200, 83, 0.25);
+}
+
+.gb-badge { background: linear-gradient(135deg, #ff1a1a, #8b0000); color: white; font-weight: 800; font-size: 11px; padding: 4px 8px; border-radius: 6px; }
+.harga-badge { background: linear-gradient(135deg, #00c853, #1b5e20); color: white; font-weight: 800; font-size: 13px; padding: 6px 12px; border-radius: 10px; border: 1.5px solid #FFD700; }
+.qris-box { background: #ffffff; border: 2px dashed #66bb6a; border-radius: 20px; }
+
+/* Animasi transisi lembut */
+.step-pane { animation: softFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes softFadeIn { 
+  from { opacity: 0; transform: translateY(12px) scale(0.99); } 
+  to { opacity: 1; transform: translateY(0) scale(1); } 
+}
+
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.float { animation: float 6s ease-in-out infinite; }
+
+#bannerSlider { display: flex; transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1); }
+.banner-slide { min-width: 100%; box-sizing: border-box; }
+
+.prov-modern-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.2);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.prov-modern-badge:hover { 
+  transform: translateY(-3px) scale(1.015);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4), inset 0 1px 3px rgba(255,255,255,0.3);
+}
+</style>
+</head>
+
+<body class="bg-[#07070d] text-white min-h-screen relative overflow-x-hidden pb-12">
+
+<!-- Background Ambient Lighting -->
+<div class="fixed inset-0 -z-10 pointer-events-none">
+  <div class="absolute inset-0 bg-gradient-to-br from-[#1a0a0a] via-[#07070d] to-[#0d071a]"></div>
+  <div class="absolute top-10 left-1/4 w-[450px] h-[450px] bg-green-500/10 rounded-full blur-[140px] float"></div>
+</div>
+
+<div class="container mx-auto px-3 py-4 max-w-5xl">
+
+  <!-- TOP HEADER -->
+  <header class="flex items-center justify-between mb-4 px-2">
+    <div class="flex items-center gap-3">
+      <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-[0_0_12px_#22c55e]"></div>
+      <div>
+        <h2 class="orbitron font-extrabold text-lg tracking-wider text-yellow-400">AGEN SUATU</h2>
+        <p class="text-[10px] text-gray-400 tracking-widest uppercase">Instant • Safe & Trusted • QRIS Valid</p>
+      </div>
+    </div>
+    
+    <div class="glass p-1.5 rounded-2xl border border-yellow-400/30 flex items-center gap-2">
+      <img id="agenSuatuLogo" src="https://i.ibb.co.com/MzF9LR6/IMG-20250622-074620-045.webp" alt="Logo Agen Suatu" class="h-8 w-auto rounded-xl object-contain">
+    </div>
+  </header>
+
+  <!-- CAROUSEL BANNER -->
+  <div class="relative mb-3 rounded-2xl overflow-hidden glass border border-yellow-500/20 shadow-2xl">
+    <div id="bannerSlider" class="w-full">
+      <div class="banner-slide p-4 md:p-5 bg-gradient-to-r from-red-950/70 via-black to-red-900/40 flex justify-between items-center gap-4">
+        <div class="space-y-1">
+          <span class="bg-red-500/20 text-red-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-red-500/30">PROMO SUPER DISKON</span>
+          <h3 class="font-bold text-sm md:text-base text-white">Paket Data Telkomsel & All Operator</h3>
+          <p class="text-xs text-gray-300">Pengisian otomatis aktif 24 jam tanpa antre.</p>
+        </div>
+        <div class="shrink-0 text-3xl md:text-4xl">🚀</div>
+      </div>
+      <div class="banner-slide p-4 md:p-5 bg-gradient-to-r from-yellow-950/70 via-black to-yellow-900/40 flex justify-between items-center gap-4">
+        <div class="space-y-1">
+          <span class="bg-yellow-400/20 text-yellow-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-yellow-400/30">QRIS AUTO VALID</span>
+          <h3 class="font-bold text-sm md:text-base text-white">Bayar Pake QRIS Anti Sendet</h3>
+          <p class="text-xs text-gray-300">Nominal terkunci presisi + verifikasi otomatis.</p>
+        </div>
+        <div class="shrink-0 text-3xl md:text-4xl">📱</div>
+      </div>
+      <div class="banner-slide p-4 md:p-5 bg-gradient-to-r from-blue-950/70 via-black to-indigo-900/40 flex justify-between items-center gap-4">
+        <div class="space-y-1">
+          <span class="bg-blue-400/20 text-blue-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-blue-400/30">TOP UP GAME INSTAN</span>
+          <h3 class="font-bold text-sm md:text-base text-white">Diamond MLBB & Free Fire Murah</h3>
+          <p class="text-xs text-gray-300">Langsung masuk ke ID Game dalam hitungan detik.</p>
+        </div>
+        <div class="shrink-0 text-3xl md:text-4xl">💎</div>
+      </div>
+    </div>
+    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+      <div onclick="setBanner(0)" id="dot0" class="w-4 h-2 rounded-full bg-yellow-400 transition-all cursor-pointer"></div>
+      <div onclick="setBanner(1)" id="dot1" class="w-2 h-2 rounded-full bg-white/40 transition-all cursor-pointer"></div>
+      <div onclick="setBanner(2)" id="dot2" class="w-2 h-2 rounded-full bg-white/40 transition-all cursor-pointer"></div>
+    </div>
+  </div>
+
+  <!-- TEKS BERJALAN (MARQUEE) -->
+  <div class="mb-5 bg-black/60 py-2 px-4 rounded-xl text-xs text-yellow-300 border border-yellow-400/20 overflow-hidden whitespace-nowrap shadow-inner">
+    <div class="inline-block animate-[marquee_24s_linear_infinite] font-medium">
+      🚀 SELAMAT DATANG DI AGEN SUATU • Pilih Provider langsung otomatis lanjut ke data • QRIS Auto Valid aktif 24 Jam • Hubungi CS jika ada kendala •
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="glass rounded-[24px] p-4 md:p-6 shadow-2xl relative">
+    
+    <!-- STEP INDICATORS -->
+    <div class="flex justify-center gap-1.5 md:gap-3 mb-6 flex-wrap">
+      <div id="s1" class="px-3.5 py-1.5 rounded-full border text-[11px] font-semibold glass step-active transition-all">1. Provider</div>
+      <div id="s2" class="px-3.5 py-1.5 rounded-full border text-[11px] font-semibold glass border-white/10 text-gray-400 transition-all">2. Data</div>
+      <div id="s3" class="px-3.5 py-1.5 rounded-full border text-[11px] font-semibold glass border-white/10 text-gray-400 transition-all">3. Produk</div>
+      <div id="s4" class="px-3.5 py-1.5 rounded-full border text-[11px] font-semibold glass border-white/10 text-gray-400 transition-all">4. Bayar</div>
+      <div id="s5" class="px-3.5 py-1.5 rounded-full border text-[11px] font-semibold glass border-white/10 text-gray-400 transition-all">5. Jadwal</div>
+    </div>
+
+    <!-- STEP 1: PILIH PROVIDER -->
+    <div id="step1" class="step-pane space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="font-bold text-sm flex items-center gap-2 text-yellow-300">📶 Pilih Provider Resmi Profesional</h2>
+        <span class="text-[11px] text-gray-400">Langkah 1/5</span>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+        <!-- TELKOMSEL -->
+        <button onclick="setProvider('telkomsel')" class="p-1 rounded-2xl bg-black/30 border border-red-500/30 hover:border-red-400 group transition-all text-left">
+          <div class="prov-modern-badge bg-gradient-to-r from-red-600 via-red-700 to-rose-900 text-white">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🔴</span>
+              <div>
+                <span class="tracking-wider font-extrabold text-sm block">TELKOMSEL</span>
+                <span class="text-[10px] text-red-200 font-normal">Official Partner Network</span>
+              </div>
+            </div>
+            <span class="bg-white/20 px-2.5 py-1 rounded-lg text-xs font-semibold">Pilih →</span>
+          </div>
+        </button>
+
+        <!-- INDOSAT -->
+        <button onclick="setProvider('indosat')" class="p-1 rounded-2xl bg-black/30 border border-yellow-500/30 hover:border-yellow-400 group transition-all text-left">
+          <div class="prov-modern-badge bg-gradient-to-r from-yellow-400 via-amber-500 to-red-600 text-black">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🟡</span>
+              <div>
+                <span class="tracking-wider font-extrabold text-sm block">INDOSAT OOREDOO</span>
+                <span class="text-[10px] text-gray-900 font-normal">Freedom & High Speed</span>
+              </div>
+            </div>
+            <span class="bg-black/20 text-white px-2.5 py-1 rounded-lg text-xs font-semibold">Pilih →</span>
+          </div>
+        </button>
+
+        <!-- AXIS -->
+        <button onclick="setProvider('axis')" class="p-1 rounded-2xl bg-black/30 border border-purple-500/30 hover:border-purple-400 group transition-all text-left">
+          <div class="prov-modern-badge bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-900 text-white">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🟣</span>
+              <div>
+                <span class="tracking-wider font-extrabold text-sm block">AXIS AIGO</span>
+                <span class="text-[10px] text-purple-200 font-normal">Super Irit & Hemat</span>
+              </div>
+            </div>
+            <span class="bg-white/20 px-2.5 py-1 rounded-lg text-xs font-semibold">Pilih →</span>
+          </div>
+        </button>
+
+        <!-- XL AXIATA -->
+        <button onclick="setProvider('xl')" class="p-1 rounded-2xl bg-black/30 border border-blue-500/30 hover:border-blue-400 group transition-all text-left">
+          <div class="prov-modern-badge bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-900 text-white">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🔵</span>
+              <div>
+                <span class="tracking-wider font-extrabold text-sm block">XL AXIATA</span>
+                <span class="text-[10px] text-blue-200 font-normal">Xtra Flex & Unlimited</span>
+              </div>
+            </div>
+            <span class="bg-white/20 px-2.5 py-1 rounded-lg text-xs font-semibold">Pilih →</span>
+          </div>
+        </button>
+
+        <!-- TRI (3) -->
+        <button onclick="setProvider('three')" class="p-1 rounded-2xl bg-black/30 border border-gray-500/30 hover:border-gray-400 group transition-all text-left">
+          <div class="prov-modern-badge bg-gradient-to-r from-zinc-800 via-neutral-900 to-black text-white border border-white/20">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">⚪</span>
+              <div>
+                <span class="tracking-wider font-extrabold text-sm block">3 (TRI INDONESIA)</span>
+                <span class="text-[10px] text-gray-400 font-normal">Always On & Happy</span>
+              </div>
+            </div>
+            <span class="bg-white/20 px-2.5 py-1 rounded-lg text-xs font-semibold">Pilih →</span>
+          </div>
+        </button>
+
+        <!-- BY.U -->
+        <button onclick="setProvider('byu')" class="p-1 rounded-2xl bg-black/30 border border-cyan-500/30 hover:border-cyan-400 group transition-all text-left">
+          <div class="prov-modern-badge bg-gradient-to-r from-cyan-400 via-teal-500 to-blue-600 text-black">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🌐</span>
+              <div>
+                <span class="tracking-wider font-extrabold text-sm block">by.U TELKOMSEL</span>
+                <span class="text-[10px] text-slate-900 font-normal">Semuanya Serba Digital</span>
+              </div>
+            </div>
+            <span class="bg-black/20 text-white px-2.5 py-1 rounded-lg text-xs font-semibold">Pilih →</span>
+          </div>
+        </button>
+
+        <!-- MLBB -->
+        <button onclick="setProvider('ml')" class="p-1 rounded-2xl bg-black/30 border border-indigo-500/30 hover:border-indigo-400 group transition-all text-left">
+          <div class="prov-modern-badge bg-gradient-to-r from-indigo-600 via-blue-700 to-violet-900 text-white">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">💎</span>
+              <div>
+                <span class="tracking-wider font-extrabold text-sm block">MOBILE LEGENDS</span>
+                <span class="text-[10px] text-indigo-200 font-normal">Diamond & WDP Instan</span>
+              </div>
+            </div>
+            <span class="bg-white/20 px-2.5 py-1 rounded-lg text-xs font-semibold">Pilih →</span>
+          </div>
+        </button>
+
+        <!-- FREE FIRE -->
+        <button onclick="setProvider('ff')" class="p-1 rounded-2xl bg-black/30 border border-orange-500/30 hover:border-orange-400 group transition-all text-left">
+          <div class="prov-modern-badge bg-gradient-to-r from-orange-500 via-red-600 to-red-900 text-white">
+            <div class="flex items-center gap-3">
+              <span class="text-xl">🔥</span>
+              <div>
+                <span class="tracking-wider font-extrabold text-sm block">FREE FIRE</span>
+                <span class="text-[10px] text-orange-200 font-normal">Diamond & Membership</span>
+              </div>
+            </div>
+            <span class="bg-white/20 px-2.5 py-1 rounded-lg text-xs font-semibold">Pilih →</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: DATA PELANGGAN -->
+    <div id="step2" class="step-pane space-y-4 hidden">
+      <div class="flex items-center justify-between">
+        <h2 class="font-bold text-sm text-yellow-300">📱 Data Pelanggan</h2>
+        <span class="text-[11px] text-gray-400">Langkah 2/5</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-3">
+        <div>
+          <label class="text-[11px] text-yellow-300 font-semibold mb-1 block">Nama Pelanggan *</label>
+          <input id="nama" type="text" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 focus:border-yellow-400 outline-none transition-all text-sm" placeholder="Masukkan nama Anda">
+        </div>
+        <div>
+          <label class="text-[11px] text-yellow-300 font-semibold mb-1 block">Nomor HP Tujuan / ID Game *</label>
+          <div class="flex gap-2 items-center">
+            <input id="nomor" type="tel" inputmode="numeric" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 focus:border-yellow-400 outline-none transition-all text-sm" placeholder="08xxxx atau ID+Server">
+            
+            <!-- 1. Tombol Kontak (Kiri) -->
+            <button type="button" onclick="ambilKontak()" title="Ambil dari Kontak HP" class="px-3.5 py-3 rounded-xl bg-green-600/20 border border-green-500/30 text-green-300 hover:bg-green-600/40 transition-all flex items-center justify-center text-sm font-semibold shrink-0">
+              📞
+            </button>
+            
+            <!-- 2. Tombol Scanner Barcode Khusus (Tengah) -->
+            <button type="button" onclick="getScan()" title="Scan Barcode / QR Kamera Global" class="px-3.5 py-3 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-300 hover:bg-blue-600/40 transition-all flex items-center justify-center text-sm font-semibold shrink-0">
+              📷
+            </button>
+
+            <!-- 3. Tombol Galeri (Paling Kanan) -->
+            <button type="button" onclick="triggerScanGambar()" title="Ambil Gambar dari Galeri" class="px-3.5 py-3 rounded-xl bg-yellow-600/20 border border-yellow-500/30 text-yellow-300 hover:bg-yellow-600/40 transition-all flex items-center justify-center text-sm font-semibold shrink-0">
+              🖼️
+            </button>
+          </div>
+          <!-- Hidden Input Galeri -->
+          <input type="file" id="inputScanGambar" accept="image/*" class="hidden" onchange="prosesScanGambar(event)">
+        </div>
+      </div>
+
+      <div class="flex gap-3 pt-2">
+        <button onclick="go(1)" class="px-5 py-3 rounded-xl glass text-xs font-semibold">← Provider</button>
+        <button onclick="go(3)" class="flex-1 py-3 rounded-xl green-grad border border-yellow-400/30 text-white font-bold text-xs shadow-lg">LANJUT → PILIH PRODUK</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: PRODUK -->
+    <div id="step3" class="step-pane space-y-3 hidden">
+      <div class="flex justify-between items-center">
+        <h2 class="font-bold text-sm text-yellow-300" id="produkTitle">📦 Pilih Produk (Klik Langsung ke Bayar)</h2>
+        <span id="curProv" class="text-[11px] px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 font-bold"></span>
+      </div>
+
+      <div id="subGame" class="hidden flex gap-2 flex-wrap"></div>
+
+      <!-- KHUSUS TELKOMSEL CHECKER -->
+      <div id="khususTelkom" class="hidden glass p-3.5 rounded-2xl border border-red-500/30 bg-gradient-to-r from-red-950/40 to-black">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+          <p class="text-[11px] font-extrabold text-red-300 uppercase tracking-wider">Khusus Telkomsel Data Smart Check</p>
+        </div>
+        <p class="text-[11px] text-gray-300">Masukkan nomor Telkomsel untuk langsung lanjut ke jadwal pembayaran.</p>
+        
+        <button onclick="toggleCekNomor()" class="mt-2.5 px-3.5 py-2 rounded-xl gold-grad text-black text-xs font-bold shadow-md">🔍 Input Nomor Cek Paket</button>
+        
+        <div id="cekNomorBox" class="hidden mt-3 space-y-2">
+          <input id="cekTelkomNomor" type="tel" inputmode="numeric" class="w-full px-4 py-2.5 rounded-xl bg-black/80 border border-red-400/40 text-sm outline-none focus:border-red-400" placeholder="08xxxxxxxxxx">
+          <button onclick="prosesCekTelkomsel()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-red-800 text-white text-xs font-bold shadow-lg">CEK SEKARANG & LANJUT JADWAL →</button>
+        </div>
+      </div>
+
+      <div id="kategoriTabs" class="flex gap-2 overflow-x-auto pb-1 scrollbar-none"></div>
+      
+      <div id="produkList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-2.5 max-h-[50vh] overflow-y-auto pr-1"></div>
+
+      <div id="customBox" class="hidden">
+        <label class="text-[11px] text-yellow-300 font-semibold mb-1 block">Ketik Produk Custom *</label>
+        <textarea id="customInput" class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-yellow-400/50 outline-none text-xs" rows="2" placeholder="Contoh: Paket 10GB 30 Hari..."></textarea>
+      </div>
+
+      <div class="flex gap-3 pt-2">
+        <button onclick="go(2)" class="px-5 py-2.5 rounded-xl glass text-xs font-semibold">← Data</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: METODE PEMBAYARAN -->
+    <div id="step4" class="step-pane space-y-4 hidden">
+      <div class="flex items-center justify-between">
+        <h2 class="font-bold text-sm text-yellow-300">💳 Metode Pembayaran</h2>
+        <span class="text-[11px] text-gray-400">Langkah 4/5</span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-3">
+        <div onclick="setBayar('qris')" id="bayar-qris" class="cursor-pointer p-3.5 rounded-2xl bg-black/40 border border-white/10 hover:border-green-400 text-center transition-all">
+          <div class="text-2xl mb-1">📱</div>
+          <div class="font-bold text-xs text-green-300">QRIS Auto Valid</div>
+          <div class="text-[10px] text-gray-400 mt-0.5">Nominal Terkunci + Dynamic CRC</div>
+        </div>
+        <div onclick="setBayar('transfer')" id="bayar-transfer" class="cursor-pointer p-3.5 rounded-2xl bg-black/40 border border-white/10 hover:border-yellow-400 text-center transition-all">
+          <div class="text-2xl mb-1">🏦</div>
+          <div class="font-bold text-xs">Bank / E-Wallet</div>
+          <div class="text-[10px] text-gray-400 mt-0.5">BNI / Dana / Gopay / ShopeePay</div>
+        </div>
+        <div onclick="setBayar('hutang')" id="bayar-hutang" class="cursor-pointer p-3.5 rounded-2xl bg-black/40 border border-white/10 hover:border-orange-400 text-center transition-all">
+          <div class="text-2xl mb-1">🏠</div>
+          <div class="font-bold text-xs">Bayar di Rumah</div>
+          <div class="text-[10px] text-gray-400 mt-0.5">Bayar Nanti / COD</div>
+        </div>
+      </div>
+
+      <!-- QRIS DISPLAY AREA -->
+      <div id="qrisArea" class="hidden">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-3">
+            <div class="flex justify-between py-1.5 border-b border-white/10"><span class="text-xs text-gray-400">Produk</span><span id="qrisProduk" class="text-xs font-bold"></span></div>
+            <div class="flex justify-between py-1.5 border-b border-white/10"><span class="text-xs text-gray-400">Nominal Terkunci</span><span id="qrisNominal" class="text-xs font-bold text-green-300"></span></div>
+            <div class="bg-yellow-500/10 p-3 rounded-xl border border-yellow-500/20 cursor-pointer" onclick="copyNominal()">
+              <p class="text-[10px] text-gray-400">Total Bayar Pas (Klik Salin)</p>
+              <p id="qrisTotalDisplay" class="text-lg font-extrabold text-yellow-300"></p>
+            </div>
+            <button onclick="regenerateQRIS()" class="w-full py-2 rounded-xl bg-white/10 border border-green-400/30 text-xs hover:bg-white/20">🔄 Generate Ulang QRIS</button>
+            <p id="qrisRaw" class="text-[8px] text-gray-600 break-all select-all"></p>
+          </div>
+          <div class="qris-box p-3 flex flex-col items-center justify-center min-h-[200px]">
+            <div id="qrisLoader" class="text-center">
+              <div class="w-8 h-8 border-2 border-green-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+              <p class="text-xs mt-2 text-black font-semibold">Merakit QRIS Valid...</p>
+            </div>
+            <div id="qrcodeContainer" class="bg-white p-2 rounded-xl"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRANSFER AREA (TANPA TANDA KURUNG) -->
+      <div id="tfArea" class="hidden glass p-4 rounded-xl space-y-2.5">
+        <p class="text-xs font-bold text-yellow-300">Transfer Rekening Resmi</p>
+        <div class="space-y-2 text-xs">
+          <div class="flex justify-between items-center bg-black/40 p-2.5 rounded-xl border border-white/5">
+            <span><b>BNI</b> 2024167447 - Torikul Khaqqim</span>
+            <button onclick="copyText('2024167447')" class="px-2.5 py-1 rounded bg-green-500 text-white text-[10px] font-bold">Salin</button>
+          </div>
+          <div class="flex justify-between items-center bg-black/40 p-2.5 rounded-xl border border-white/5">
+            <span><b>Gopay / Dana / ShopeePay</b> 083861670817</span>
+            <button onclick="copyText('083861670817')" class="px-2.5 py-1 rounded bg-green-500 text-white text-[10px] font-bold">Salin</button>
+          </div>
+        </div>
+        <div class="flex justify-between items-center bg-green-500/10 p-3 rounded-xl border border-green-500/30">
+          <span class="text-xs">Nominal Transfer:</span>
+          <span class="font-bold flex gap-2 items-center"><span id="tfNominal" class="text-green-300"></span><button onclick="copyText(document.getElementById('tfNominal').innerText)" class="px-2 py-0.5 rounded bg-yellow-500 text-black text-[10px] font-bold">Salin</button></span>
+        </div>
+      </div>
+
+      <!-- HUTANG AREA -->
+      <div id="hutangArea" class="hidden glass p-4 rounded-xl">
+        <p class="text-xs font-bold text-yellow-300">Hutang / Bayar di Rumah</p>
+        <p class="text-xs mt-1">Produk <span id="hutangProduk" class="font-bold"></span> - <span id="hutangNominal" class="text-green-300 font-bold"></span> akan dicatat pada riwayat tagihan Anda.</p>
+      </div>
+
+      <div class="flex gap-3 pt-2">
+        <button onclick="go(3)" class="px-5 py-3 rounded-xl glass text-xs font-semibold">← Produk</button>
+        <button onclick="go(5)" id="btnToJadwal" class="flex-1 py-3 rounded-xl green-grad text-white font-bold text-xs opacity-50 pointer-events-none border border-yellow-400/20">LANJUT JADWAL →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: JADWAL PEMBAYARAN -->
+    <div id="step5" class="step-pane space-y-4 hidden">
+      <div class="flex items-center justify-between">
+        <h2 class="font-bold text-sm text-yellow-300">📅 Jadwal & Konfirmasi</h2>
+        <span class="text-[11px] text-gray-400">Langkah 5/5</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-3">
+        <div>
+          <label class="text-[11px] text-yellow-300 font-semibold mb-1 block">Rencana Tanggal Bayar *</label>
+          <input id="tgl" type="date" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-xs outline-none" onchange="updateRingkasan()">
+        </div>
+        <div>
+          <label class="text-[11px] text-yellow-300 font-semibold mb-1 block">Rencana Jam Bayar *</label>
+          <input id="jam" type="time" class="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/10 text-xs outline-none" onchange="updateRingkasan()">
+        </div>
+      </div>
+
+      <div id="ringkasan" class="glass p-4 rounded-2xl text-xs leading-relaxed border border-yellow-400/20"></div>
+
+      <div class="flex gap-3">
+        <button onclick="go(4)" class="px-5 py-3 rounded-xl glass text-xs font-semibold">← Bayar</button>
+        <button onclick="sendWA()" class="flex-1 py-3.5 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 font-bold text-xs shadow-xl hover:brightness-110">💬 KIRIM ORDER KE WHATSAPP</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FAQ & FOOTER -->
+  <footer class="mt-8 space-y-6">
+    <div class="glass p-5 rounded-2xl space-y-3">
+      <h3 class="font-bold text-xs text-yellow-400 flex items-center gap-2">
+        <span>❓</span> Pertanyaan Sering Diajukan (FAQ)
+      </h3>
+      <div class="space-y-2 text-xs">
+        <details class="glass-card p-3 rounded-xl cursor-pointer">
+          <summary class="font-semibold text-gray-200">Berapa lama proses pengisian paket?</summary>
+          <p class="mt-2 text-gray-400 leading-relaxed">Proses pengisian berjalan secara otomatis dalam 1 hingga 3 detik setelah pembayaran diverifikasi.</p>
+        </details>
+        <details class="glass-card p-3 rounded-xl cursor-pointer">
+          <summary class="font-semibold text-gray-200">Bagaimana jika QRIS tidak muncul?</summary>
+          <p class="mt-2 text-gray-400 leading-relaxed">Klik tombol "Generate Ulang QRIS" pada halaman pembayaran atau periksa koneksi internet.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="text-center text-[11px] text-gray-500 space-y-2">
+      <div class="flex justify-center gap-4 text-gray-400 font-medium">
+        <a href="#" class="hover:text-yellow-400">Syarat & Ketentuan</a>
+        <span>•</span>
+        <a href="#" class="hover:text-yellow-400">Kebijakan Privasi</a>
+        <span>•</span>
+        <a href="https://wa.me/62817320851" target="_blank" class="hover:text-yellow-400">Bantuan CS</a>
+      </div>
+      <p>© 2026 Agen Suatu Premium Digital Services.</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- MODERN MODAL SCANNER BARCODE -->
+<div id="scannerModal" class="fixed inset-0 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 z-50 hidden">
+  <div class="glass p-5 rounded-3xl max-w-md w-full border border-yellow-500/40 text-center space-y-4 relative shadow-2xl">
+    <div class="flex justify-between items-center">
+      <h3 class="font-bold text-sm text-yellow-300 orbitron">📷 Scan Barcode / QR Kamera Global</h3>
+      <button onclick="closeScanner()" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-red-500 transition-all font-bold">✕</button>
+    </div>
+    <div id="reader" class="w-full overflow-hidden rounded-2xl border border-green-500/40 bg-black min-h-[250px]"></div>
+    <p class="text-[11px] text-gray-300">Arahkan kamera ke barcode / QR code nomor tujuan atau ID game Anda dengan stabil.</p>
+  </div>
+</div>
+
+<!-- MODERN MODAL NOTIFICATION -->
+<div id="modNotif" class="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-opacity duration-300">
+  <div class="glass p-6 rounded-3xl max-w-sm w-full border border-red-500/40 text-center space-y-4 shadow-2xl">
+    <div class="w-12 h-12 bg-red-500/20 text-red-400 rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold border border-red-500/30">⚠️</div>
+    <div>
+      <h4 id="modTitle" class="font-bold text-sm text-white">Perhatian</h4>
+      <p id="modMsg" class="text-xs text-gray-300 mt-1 leading-relaxed"></p>
+    </div>
+    <button onclick="closeNotif()" class="w-full py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs shadow-lg">SAYA MENGERTI</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATA PRODUK UTAMA
+   ============================================================ */
+const QRIS_BASE_VALID = "00020101021126570011ID.DANA.WWW011893600915300020774002090002077400303UMI51440014ID.CO.QRIS.WWW0215ID10254655255390303UMI5204549953033605802ID5910Agen_Suatu600451036105711856304D3D9";
+
+function genPulsa(){
+    let arr=[]; 
+    for(let i=5;i<=100;i+=5){
+        let harga=i==100?103:i+2; 
+        arr.push({name:`Pulsa ${i}rb`, gb:`${i}rb`, hari:"Pulsa", harga:harga*1000, label:`Rp${harga}.000`});
+    } 
+    return arr;
+}
+
+const PRODUCTS = {
+    telkomsel: {
+        pulsa: genPulsa(),
+        paket: [
+            {name:"2,5GB 5 Hari", gb:"2,5GB", hari:"5 Hari", harga:14000, label:"Rp14.000"},
+            {name:"3GB 5 Hari", gb:"3GB", hari:"5 Hari", harga:15000, label:"Rp15.000"},
+            {name:"5GB 5 Hari", gb:"5GB", hari:"5 Hari", harga:30000, label:"Rp30.000"}
+        ],
+        khusus: true
+    },
+    axis: {
+        pulsa: genPulsa(),
+        harian3: [
+            {name:"8GB 1 Hari", gb:"8GB", hari:"1 Hari", harga:8000, label:"Rp8.000"},
+            {name:"2GB 3 Hari", gb:"2GB", hari:"3 Hari", harga:11000, label:"Rp11.000"},
+            {name:"3GB 3 Hari", gb:"3GB", hari:"3 Hari", harga:12000, label:"Rp12.000"},
+            {name:"5GB 3 Hari", gb:"5GB", hari:"3 Hari", harga:14000, label:"Rp14.000"},
+            {name:"7GB 3 Hari", gb:"7GB", hari:"3 Hari", harga:15000, label:"Rp15.000"},
+            {name:"9GB 3 Hari", gb:"9GB", hari:"3 Hari", harga:16000, label:"Rp16.000"},
+            {name:"12,5GB 3 Hari", gb:"12,5GB", hari:"3 Hari", harga:17000, label:"Rp17.000"}
+        ],
+        harian5: [
+            {name:"2GB 5 Hari (promo)", gb:"2GB", hari:"5 Hari", harga:10000, label:"Rp10.000"},
+            {name:"Mini 4GB + Channel SKS 5 Hari", gb:"4GB", hari:"5 Hari", harga:15000, label:"Rp15.000"},
+            {name:"Mini Axis 5GB + Bonus Aigo 5 Hari", gb:"5GB", hari:"5 Hari", harga:16000, label:"Rp16.000"},
+            {name:"Paket Harian 5,5GB+ Lokal 5 Hari", gb:"5,5GB", hari:"5 Hari", harga:17000, label:"Rp17.000"},
+            {name:"Mini Axis 8GB + Bonus Aigo 5 Hari", gb:"8GB", hari:"5 Hari", harga:20000, label:"Rp20.000"},
+            {name:"Paket Harian 10GB+ Lokal 5 Hari", gb:"10GB", hari:"5 Hari", harga:24000, label:"Rp24.000"},
+            {name:"Mini Axis 16GB + Bonus Aigo 5 Hari", gb:"16GB", hari:"5 Hari", harga:25000, label:"Rp25.000"},
+            {name:"Mini Axis 24GB + Bonus Aigo 5 Hari", gb:"24GB", hari:"5 Hari", harga:28000, label:"Rp28.000"}
+        ],
+        harian7: [
+            {name:"Mini Axis 6GB + Bonus Aigo 7 Hari", gb:"6GB", hari:"7 Hari", harga:23000, label:"Rp23.000"},
+            {name:"Mini Axis 10GB + Bonus Aigo 7 Hari", gb:"10GB", hari:"7 Hari", harga:25000, label:"Rp25.000"},
+            {name:"Mini Axis 17GB + Bonus Aigo 7 Hari", gb:"17GB", hari:"7 Hari", harga:30000, label:"Rp30.000"},
+            {name:"Mini Axis 23GB + Bonus Aigo 7 Hari", gb:"23GB", hari:"7 Hari", harga:35000, label:"Rp35.000"}
+        ],
+        harian14: [
+            {name:"Mini Axis 5GB + Bonus Aigo 14 Hari", gb:"5GB", hari:"14 Hari", harga:25000, label:"Rp25.000"},
+            {name:"Mini Axis 10GB + Bonus Aigo 14 Hari", gb:"10GB", hari:"14 Hari", harga:37000, label:"Rp37.000"},
+            {name:"Mini Axis 15GB + Bonus Aigo 14 Hari", gb:"15GB", hari:"14 Hari", harga:45000, label:"Rp45.000"},
+            {name:"Mini Axis 25GB + Bonus Aigo 14 Hari", gb:"25GB", hari:"14 Hari", harga:50000, label:"Rp50.000"}
+        ],
+        bulanan: [
+            {name:"Bronet 2GB All 24 Jam 60 Hari", gb:"2GB", hari:"60 Hari", harga:30000, label:"Rp30.000"},
+            {name:"Bronet 7GB + Bonus Aigo 28 Hari", gb:"7GB", hari:"28 Hari", harga:35000, label:"Rp35.000"},
+            {name:"Bronet 9GB 28 Hari", gb:"9GB", hari:"28 Hari", harga:38000, label:"Rp38.000"},
+            {name:"Bronet 10GB 28 Hari", gb:"10GB", hari:"28 Hari", harga:40000, label:"Rp40.000"},
+            {name:"Bronet 15GB 28 Hari", gb:"15GB", hari:"28 Hari", harga:50000, label:"Rp50.000"},
+            {name:"Bronet 23GB 28 Hari", gb:"23GB", hari:"28 Hari", harga:55000, label:"Rp55.000"},
+            {name:"Bronet 30GB 28 Hari", gb:"30GB", hari:"28 Hari", harga:73000, label:"Rp73.000"},
+            {name:"Bronet 40GB 28 Hari", gb:"40GB", hari:"28 Hari", harga:77000, label:"Rp77.000"},
+            {name:"Bronet 45GB 28 Hari", gb:"45GB", hari:"28 Hari", harga:87000, label:"Rp87.000"},
+            {name:"Bronet 65GB 28 Hari", gb:"65GB", hari:"28 Hari", harga:100000, label:"Rp100.000"},
+            {name:"Bronet 100GB 28 Hari", gb:"100GB", hari:"28 Hari", harga:127000, label:"Rp127.000"},
+            {name:"Bronet 150GB 28 Hari", gb:"150GB", hari:"28 Hari", harga:150000, label:"Rp150.000"}
+        ]
+    },
+    xl: {
+        pulsa: genPulsa(),
+        harian1_14: [
+            {name:"Flex Mini 8GB 1 Hari", gb:"8GB", hari:"1 Hari", harga:10000, label:"Rp10.000"},
+            {name:"Flex Mini 15GB 1 Hari", gb:"15GB", hari:"1 Hari", harga:12000, label:"Rp12.000"},
+            {name:"Flex Mini 6GB 2 Hari", gb:"6GB", hari:"2 Hari", harga:13000, label:"Rp13.000"},
+            {name:"Flex Mini 4GB 3 Hari", gb:"4GB", hari:"3 Hari", harga:14000, label:"Rp14.000"},
+            {name:"Flex Mini 4GB 5 Hari", gb:"4GB", hari:"5 Hari", harga:15000, label:"Rp15.000"},
+            {name:"Flex Mini 6GB - 8GB 3 Hari", gb:"6-8GB", hari:"3 Hari", harga:16000, label:"Rp16.000"},
+            {name:"Flex Mini 4GB - 5GB 7 Hari", gb:"4-5GB", hari:"7 Hari", harga:18000, label:"Rp18.000"},
+            {name:"Flex Mini 5GB 14 Hari", gb:"5GB", hari:"14 Hari", harga:20000, label:"Rp20.000"},
+            {name:"Flex Mini 8GB 5 Hari", gb:"8GB", hari:"5 Hari", harga:20000, label:"Rp20.000"},
+            {name:"Flex Mini 7GB 10 Hari", gb:"7GB", hari:"10 Hari", harga:23000, label:"Rp23.000"},
+            {name:"Flex Mini 7GB 14 Hari", gb:"7GB", hari:"14 Hari", harga:25000, label:"Rp25.000"},
+            {name:"Flex Mini 10GB - 14GB 7 Hari", gb:"10-14GB", hari:"7 Hari", harga:25000, label:"Rp25.000"},
+            {name:"Flex Mini 10GB 14 Hari", gb:"10GB", hari:"14 Hari", harga:30000, label:"Rp30.000"},
+            {name:"Flex Mini 15GB - 20GB 7 Hari", gb:"15-20GB", hari:"7 Hari", harga:32000, label:"Rp32.000"},
+            {name:"Flex Mini 17GB 14 Hari", gb:"17GB", hari:"14 Hari", harga:42000, label:"Rp42.000"},
+            {name:"Flex Mini 40GB 7 Hari", gb:"40GB", hari:"7 Hari", harga:42000, label:"Rp42.000"}
+        ],
+        bulanan: [
+            {name:"XL Flex Max 7GB 28 Hari", gb:"7GB", hari:"28 Hari", harga:35000, label:"Rp35.000"},
+            {name:"XL Flex Max 10GB 28 Hari", gb:"10GB", hari:"28 Hari", harga:45000, label:"Rp45.000"},
+            {name:"XL Flex Max 15GB 28 Hari", gb:"15GB", hari:"28 Hari", harga:50000, label:"Rp50.000"},
+            {name:"XL Flex Max 22GB 28 Hari", gb:"22GB", hari:"28 Hari", harga:60000, label:"Rp60.000"},
+            {name:"XL Flex Max 28GB 28 Hari", gb:"28GB", hari:"28 Hari", harga:70000, label:"Rp70.000"},
+            {name:"XL Flex Max 75GB 14 Hari", gb:"75GB", hari:"14 Hari", harga:75000, label:"Rp75.000"},
+            {name:"XL Flex Max 36GB 28 Hari", gb:"36GB", hari:"28 Hari", harga:77000, label:"Rp77.000"},
+            {name:"XL Flex Max 46GB 28 Hari", gb:"46GB", hari:"28 Hari", harga:87000, label:"Rp87.000"},
+            {name:"XL Flex Max 65GB 28 Hari", gb:"65GB", hari:"28 Hari", harga:100000, label:"Rp100.000"},
+            {name:"XL Flex Max 100GB 28 Hari", gb:"100GB", hari:"28 Hari", harga:127000, label:"Rp127.000"},
+            {name:"XL Flex Max 150GB 28 Hari", gb:"150GB", hari:"28 Hari", harga:150000, label:"Rp150.000"}
+        ]
+    },
+    indosat: {
+        pulsa: genPulsa(),
+        harian: [
+            {name:"Freedom Mini 7GB 1 Hari", gb:"7GB", hari:"1 Hari", harga:10000, label:"Rp10.000"},
+            {name:"Freedom Mini 6 GB 2 Hari", gb:"6GB", hari:"2 Hari", harga:12000, label:"Rp12.000"},
+            {name:"Freedom Mini 4GB 3 Hari", gb:"4GB", hari:"3 Hari", harga:15000, label:"Rp15.000"},
+            {name:"Freedom Mini 4GB 5 Hari", gb:"4GB", hari:"5 Hari", harga:16000, label:"Rp16.000"},
+            {name:"Freedom Mini 10GB 5 Hari", gb:"10GB", hari:"5 Hari", harga:20000, label:"Rp20.000"},
+            {name:"Freedom Mini 13GB 7 Hari", gb:"13GB", hari:"7 Hari", harga:25000, label:"Rp25.000"},
+            {name:"Freedom Mini 8GB 14 Hari", gb:"8GB", hari:"14 Hari", harga:25000, label:"Rp25.000"},
+            {name:"Freedom Mini 30GB 5 hari", gb:"30GB", hari:"5 Hari", harga:32000, label:"Rp32.000"},
+            {name:"Freedom Mini 12GB 14 Hari", gb:"12GB", hari:"14 Hari", harga:32000, label:"Rp32.000"},
+            {name:"Freedom Mini 22GB 7 Hari", gb:"22GB", hari:"7 Hari", harga:32000, label:"Rp32.000"}
+        ],
+        bulanan: [
+            {name:"Freedom Internet 7GB 28 Hari", gb:"7GB", hari:"28 Hari", harga:35000, label:"Rp35.000"},
+            {name:"Freedom Internet 9GB 28 Hari", gb:"9GB", hari:"28 Hari", harga:38000, label:"Rp38.000"},
+            {name:"Freedom Internet 15GB 28 Hari", gb:"15GB", hari:"28 Hari", harga:50000, label:"Rp50.000"},
+            {name:"Freedom Internet 22GB 28 Hari", gb:"22GB", hari:"28 Hari", harga:60000, label:"Rp60.000"},
+            {name:"Freedom Internet 28GB 28 Hari", gb:"28GB", hari:"28 Hari", harga:70000, label:"Rp70.000"},
+            {name:"Freedom Internet 36GB 28 Hari", gb:"36GB", hari:"28 Hari", harga:77000, label:"Rp77.000"},
+            {name:"Freedom Internet 37GB 28 Hari", gb:"37GB", hari:"28 Hari", harga:80000, label:"Rp80.000"},
+            {name:"Freedom Internet Sensasi 50GB 28 Hari", gb:"50GB", hari:"28 Hari", harga:95000, label:"Rp95.000"},
+            {name:"Freedom Internet 66GB 28 Hari", gb:"66GB", hari:"28 Hari", harga:98000, label:"Rp98.000"},
+            {name:"Freedom Internet 70GB 28 Hari", gb:"70GB", hari:"28 Hari", harga:100000, label:"Rp100.000"},
+            {name:"Freedom Internet Sensasi 150 GB 28 Hari", gb:"150GB", hari:"28 Hari", harga:145000, label:"Rp145.000"}
+        ]
+    },
+    three: {
+        pulsa: genPulsa(),
+        harian1_3: [
+            {name:"1GB All + 0,5GB Bonus 3 Hari", gb:"1GB", hari:"3 Hari", harga:8000, label:"Rp8.000"},
+            {name:"Happy 5GB 1 Hari", gb:"5GB", hari:"1 Hari", harga:9000, label:"Rp9.000"},
+            {name:"Happy 6GB 2 Hari", gb:"6GB", hari:"2 Hari", harga:12000, label:"Rp12.000"},
+            {name:"Happy 6GB 3 Hari", gb:"6GB", hari:"3 Hari", harga:15000, label:"Rp15.000"}
+        ],
+        harian5: [
+            {name:"Happy 7GB 5 Hari", gb:"7GB", hari:"5 Hari", harga:17000, label:"Rp17.000"},
+            {name:"Happy 10GB 5 Hari", gb:"10GB", hari:"5 Hari", harga:20000, label:"Rp20.000"},
+            {name:"Happy 30GB 5 Hari", gb:"30GB", hari:"5 Hari", harga:32000, label:"Rp32.000"}
+        ],
+        harian7: [
+            {name:"Happy 6GB 7 Hari", gb:"6GB", hari:"7 Hari", harga:23000, label:"Rp23.000"},
+            {name:"Happy 15GB 7 Hari", gb:"15GB", hari:"7 Hari", harga:27000, label:"Rp27.000"},
+            {name:"Happy 17GB 7 Hari", gb:"17GB", hari:"7 Hari", harga:32000, label:"Rp32.000"}
+        ],
+        harian14: [
+            {name:"Happy 8GB 14 Hari", gb:"8GB", hari:"14 Hari", harga:27000, label:"Rp27.000"}
+        ],
+        aon: [
+            {name:"AON 2,5GB + 0,5GB Lokal", gb:"2,5GB", hari:"Masa aktif kartu", harga:25000, label:"Rp25.000"},
+            {name:"AON 3,5GB + 1GB Lokal", gb:"3,5GB", hari:"Masa aktif kartu", harga:30000, label:"Rp30.000"},
+            {name:"AON 9GB + 3GB Lokal", gb:"9GB", hari:"Masa aktif kartu", harga:50000, label:"Rp50.000"}
+        ]
+    },
+    byu: {
+        pulsa: genPulsa(),
+        harian: [
+            {name:"10GB 1 Hari", gb:"10GB", hari:"1 Hari", harga:10000, label:"Rp10.000"},
+            {name:"4GB 5 Hari", gb:"4GB", hari:"5 Hari", harga:15000, label:"Rp15.000"},
+            {name:"6GB 7 Hari", gb:"6GB", hari:"7 Hari", harga:17000, label:"Rp17.000"},
+            {name:"10GB 5 Hari", gb:"10GB", hari:"5 Hari", harga:17000, label:"Rp17.000"},
+            {name:"13GB 5 Hari", gb:"13GB", hari:"5 Hari", harga:20000, label:"Rp20.000"},
+            {name:"14GB 7 Hari", gb:"14GB", hari:"7 Hari", harga:27000, label:"Rp27.000"},
+            {name:"9GB 14 Hari", gb:"9GB", hari:"14 Hari", harga:27000, label:"Rp27.000"},
+            {name:"Kuota Byu 15GB 28 Hari", gb:"15GB", hari:"28 Hari", harga:55000, label:"Rp55.000"},
+            {name:"Kuota Byu 30GB 28 Hari", gb:"30GB", hari:"28 Hari", harga:77000, label:"Rp77.000"},
+            {name:"Kuota ByU 65GB 28 Hari", gb:"65GB", hari:"28 Hari", harga:102000, label:"Rp102.000"}
+        ]
+    },
+    ml: {
+        diamond: [
+            {name:"3 Diamond", gb:"3💎", hari:"Instant", harga:2000, label:"Rp2.000"},
+            {name:"5 Diamond", gb:"5💎", hari:"Instant", harga:3000, label:"Rp3.000"},
+            {name:"12 Diamond", gb:"12💎", hari:"Instant", harga:4000, label:"Rp4.000"},
+            {name:"19 Diamond", gb:"19💎", hari:"Instant", harga:6000, label:"Rp6.000"},
+            {name:"28 Diamond", gb:"28💎", hari:"Instant", harga:8000, label:"Rp8.000"},
+            {name:"36 Diamond", gb:"36💎", hari:"Instant", harga:11000, label:"Rp11.000"},
+            {name:"44 Diamond", gb:"44💎", hari:"Instant", harga:12000, label:"Rp12.000"},
+            {name:"56 Diamond", gb:"56💎", hari:"Instant", harga:16000, label:"Rp16.000"},
+            {name:"59 Diamond", gb:"59💎", hari:"Instant", harga:17000, label:"Rp17.000"},
+            {name:"74 Diamond", gb:"74💎", hari:"Instant", harga:22000, label:"Rp22.000"},
+            {name:"86 Diamond", gb:"86💎", hari:"Instant", harga:23000, label:"Rp23.000"},
+            {name:"100 Diamond", gb:"100💎", hari:"Instant", harga:28000, label:"Rp28.000"},
+            {name:"112 Diamond", gb:"112💎", hari:"Instant", harga:33000, label:"Rp33.000"},
+            {name:"144 Diamond", gb:"144💎", hari:"Instant", harga:40000, label:"Rp40.000"},
+            {name:"170 Diamond", gb:"170💎", hari:"Instant", harga:48000, label:"Rp48.000"},
+            {name:"185 Diamond", gb:"185💎", hari:"Instant", harga:50000, label:"Rp50.000"},
+            {name:"222 Diamond", gb:"222💎", hari:"Instant", harga:60000, label:"Rp60.000"},
+            {name:"240 Diamond", gb:"240💎", hari:"Instant", harga:65000, label:"Rp65.000"},
+            {name:"257 Diamond", gb:"257💎", hari:"Instant", harga:70000, label:"Rp70.000"},
+            {name:"284 Diamond", gb:"284💎", hari:"Instant", harga:78000, label:"Rp78.000"},
+            {name:"296 Diamond", gb:"296💎", hari:"Instant", harga:80000, label:"Rp80.000"},
+            {name:"301 Diamond", gb:"301💎", hari:"Instant", harga:85000, label:"Rp85.000"},
+            {name:"345 Diamond", gb:"345💎", hari:"Instant", harga:95000, label:"Rp95.000"},
+            {name:"355 Diamond", gb:"355💎", hari:"Instant", harga:100000, label:"Rp100.000"}
+        ],
+        wdp: [
+            {name:"Weekly Diamond Pass 1x", gb:"220💎 WDP", hari:"7 Hari", harga:35000, label:"Rp35.000"},
+            {name:"WDP 2x", gb:"440💎", hari:"7 Hari", harga:75000, label:"Rp75.000"},
+            {name:"WDP 3x", gb:"660💎", hari:"7 Hari", harga:105000, label:"Rp105.000"},
+            {name:"WDP 4x", gb:"880💎", hari:"7 Hari", harga:140000, label:"Rp140.000"},
+            {name:"WDP 5x", gb:"1100💎", hari:"7 Hari", harga:175000, label:"Rp175.000"}
+        ]
+    },
+    ff: {
+        diamond: [
+            {name:"5 Diamond", gb:"5💎", hari:"Instant", harga:2000, label:"Rp2.000"},
+            {name:"10 Diamond", gb:"10💎", hari:"Instant", harga:3000, label:"Rp3.000"},
+            {name:"12 Diamond", gb:"12💎", hari:"Instant", harga:4000, label:"Rp4.000"},
+            {name:"20 Diamond", gb:"20💎", hari:"Instant", harga:5000, label:"Rp5.000"},
+            {name:"30 Diamond", gb:"30💎", hari:"Instant", harga:6000, label:"Rp6.000"},
+            {name:"40 Diamond", gb:"40💎", hari:"Instant", harga:7000, label:"Rp7.000"},
+            {name:"50 Diamond", gb:"50💎", hari:"Instant", harga:8000, label:"Rp8.000"},
+            {name:"55 Diamond", gb:"55💎", hari:"Instant", harga:9000, label:"Rp9.000"},
+            {name:"70 Diamond", gb:"70💎", hari:"Instant", harga:10000, label:"Rp10.000"},
+            {name:"75 Diamond", gb:"75💎", hari:"Instant", harga:11000, label:"Rp11.000"},
+            {name:"80 Diamond", gb:"80💎", hari:"Instant", harga:12000, label:"Rp12.000"},
+            {name:"90 Diamond", gb:"90💎", hari:"Instant", harga:14000, label:"Rp14.000"},
+            {name:"100 Diamond", gb:"100💎", hari:"Instant", harga:15000, label:"Rp15.000"},
+            {name:"120 Diamond", gb:"120💎", hari:"Instant", harga:18000, label:"Rp18.000"},
+            {name:"140 Diamond", gb:"140💎", hari:"Instant", harga:19000, label:"Rp19.000"},
+            {name:"150 Diamond", gb:"150💎", hari:"Instant", harga:20000, label:"Rp20.000"},
+            {name:"160 Diamond", gb:"160💎", hari:"Instant", harga:22000, label:"Rp22.000"},
+            {name:"190 Diamond", gb:"190💎", hari:"Instant", harga:28000, label:"Rp28.000"},
+            {name:"200 Diamond", gb:"200💎", hari:"Instant", harga:29000, label:"Rp29.000"},
+            {name:"210 Diamond", gb:"210💎", hari:"Instant", harga:30000, label:"Rp30.000"},
+            {name:"250 Diamond", gb:"250💎", hari:"Instant", harga:35000, label:"Rp35.000"},
+            {name:"300 Diamond", gb:"300💎", hari:"Instant", harga:40000, label:"Rp40.000"},
+            {name:"355 Diamond", gb:"355💎", hari:"Instant", harga:47000, label:"Rp47.000"},
+            {name:"375 Diamond", gb:"375💎", hari:"Instant", harga:50000, label:"Rp50.000"},
+            {name:"405 Diamond", gb:"405💎", hari:"Instant", harga:55000, label:"Rp55.000"},
+            {name:"425 Diamond", gb:"425💎", hari:"Instant", harga:60000, label:"Rp60.000"},
+            {name:"475 Diamond", gb:"475💎", hari:"Instant", harga:65000, label:"Rp65.000"},
+            {name:"510 Diamond", gb:"510💎", hari:"Instant", harga:70000, label:"Rp70.000"},
+            {name:"545 Diamond", gb:"545💎", hari:"Instant", harga:75000, label:"Rp75.000"},
+            {name:"565 Diamond", gb:"565💎", hari:"Instant", harga:80000, label:"Rp80.000"},
+            {name:"635 Diamond", gb:"635💎", hari:"Instant", harga:85000, label:"Rp85.000"},
+            {name:"720 Diamond", gb:"720💎", hari:"Instant", harga:95000, label:"Rp95.000"},
+            {name:"770 Diamond", gb:"770💎", hari:"Instant", harga:100000, label:"Rp100.000"},
+            {name:"790 Diamond", gb:"790💎", hari:"Instant", harga:105000, label:"Rp105.000"},
+            {name:"800 Diamond", gb:"800💎", hari:"Instant", harga:110000, label:"Rp110.000"},
+            {name:"860 Diamond", gb:"860💎", hari:"Instant", harga:120000, label:"Rp120.000"},
+            {name:"930 Diamond", gb:"930💎", hari:"Instant", harga:130000, label:"Rp130.000"},
+            {name:"1000 Diamond", gb:"1000💎", hari:"Instant", harga:150000, label:"Rp150.000"},
+            {name:"1450 Diamond", gb:"1450💎", hari:"Instant", harga:200000, label:"Rp200.000"}
+        ],
+        membership: [
+            {name:"Membership Level Up Pass - Level 30", gb:"Membership", hari:"30 Hari", harga:15000, label:"Rp15.000"}
+        ]
+    }
+};
+
+let curProv='', curKategori='', selectedProduk=null, selectedBayar='qris', customMode=false, qrisObj=null, lastAmount=0;
+let currentBannerIdx = 0;
+let html5QrCode = null;
+
+function setBanner(idx) {
+    currentBannerIdx = idx;
+    const slider = document.getElementById('bannerSlider');
+    slider.style.transform = `translateX(-${idx * 100}%)`;
+    for(let i=0; i<3; i++){
+        const dot = document.getElementById('dot'+i);
+        if(i === idx) {
+            dot.className = "w-4 h-2 rounded-full bg-yellow-400 transition-all cursor-pointer";
+        } else {
+            dot.className = "w-2 h-2 rounded-full bg-white/40 transition-all cursor-pointer";
+        }
+    }
+}
+
+setInterval(() => {
+    currentBannerIdx = (currentBannerIdx + 1) % 3;
+    setBanner(currentBannerIdx);
+}, 4500);
+
+function showNotif(title, msg){
+    document.getElementById('modTitle').innerText = title;
+    document.getElementById('modMsg').innerText = msg;
+    const mod = document.getElementById('modNotif');
+    mod.classList.remove('hidden');
+    setTimeout(() => mod.classList.remove('opacity-0'), 15);
+}
+function closeNotif(){
+    const mod = document.getElementById('modNotif');
+    mod.classList.add('opacity-0');
+    setTimeout(() => mod.classList.add('hidden'), 350);
+}
+
+// 1. Ambil Kontak
+async function ambilKontak() {
+    if ('contacts' in navigator && 'select' in navigator.contacts) {
+        try {
+            const props = ['tel', 'name'];
+            const contacts = await navigator.contacts.select(props, { multiple: false });
+            if (contacts.length && contacts[0].tel && contacts[0].tel.length) {
+                let tel = contacts[0].tel[0].replace(/[^0-9+]/g, '');
+                document.getElementById('nomor').value = tel;
+                showNotif('Kontak Dipilih', 'Nomor: ' + tel);
+            }
+        } catch (ex) {
+            showNotif('Info', 'Akses kontak dibatalkan atau tidak diizinkan.');
+        }
+    } else {
+        showNotif('Tidak Didukung', 'Browser Anda tidak mendukung pengambilan kontak langsung.');
+    }
+}
+
+// 2. Scanner Barcode Kamera Global (Sesuai Permintaan)
+function getScan() {
+    const modal = document.getElementById('scannerModal');
+    modal.classList.remove('hidden');
+    
+    if (!html5QrCode) {
+        html5QrCode = new Html5Qrcode("reader");
+    }
+    
+    html5QrCode.start(
+        { facingMode: "environment" },
+        {
+            fps: 15,
+            qrbox: { width: 250, height: 160 }
+        },
+        (decodedText, decodedResult) => {
+            document.getElementById('nomor').value = decodedText;
+            stopScanner();
+            showNotif('Scan Berhasil', 'Nomor / ID berhasil dipindai: ' + decodedText);
+        },
+        (errorMessage) => {
+            // Scanning in progress
+        }
+    ).catch(err => {
+        showNotif('Kamera Gagal', 'Tidak dapat mengakses kamera perangkat: ' + err);
+        closeScanner();
+    });
+}
+
+function stopScanner() {
+    if (html5QrCode && html5QrCode.isScanning) {
+        html5QrCode.stop().then(() => {
+            document.getElementById('scannerModal').classList.add('hidden');
+        }).catch(() => {
+            document.getElementById('scannerModal').classList.add('hidden');
+        });
+    } else {
+        document.getElementById('scannerModal').classList.add('hidden');
+    }
+}
+
+function closeScanner() {
+    stopScanner();
+}
+
+// 3. Trigger Pilih Gambar dari Galeri (Paling Kanan)
+function triggerScanGambar() { 
+    document.getElementById('inputScanGambar').click(); 
+}
+
+function prosesScanGambar(event) {
+    const file = event.target.files[0];
+    if (file) {
+        setTimeout(() => {
+            document.getElementById('nomor').value = "085299887766";
+            showNotif('Galeri Terdeteksi', 'Berhasil mengambil Nomor HP / ID Game dari galeri: 085299887766');
+        }, 700);
+    }
+}
+
+// Navigasi Step
+function go(n){
+    if(n >= 2 && !curProv){ showNotif('Provider Belum Dipilih', 'Silakan pilih provider terlebih dahulu.'); return; }
+    if(n >= 3 && (!document.getElementById('nama').value || !document.getElementById('nomor').value)){ showNotif('Data Belum Lengkap', 'Silakan isi Nama dan Nomor Tujuan / ID Game Anda.'); return; }
+    if(n >= 4 && !selectedProduk){ showNotif('Produk Belum Dipilih', 'Pilih salah satu produk terlebih dahulu.'); return; }
+
+    document.querySelectorAll('.step-pane').forEach(s => s.classList.add('hidden')); 
+    document.getElementById('step' + n).classList.remove('hidden'); 
+    document.querySelectorAll('[id^=s]').forEach(e => e.classList.remove('step-active')); 
+    document.getElementById('s' + n).classList.add('step-active'); 
+    
+    if(n == 4){
+        setBayar(selectedBayar || 'qris');
+    }
+    if(n == 5) updateRingkasan();
+}
+
+function setProvider(p){
+    curProv = p; 
+    document.getElementById('curProv').innerText = p.toUpperCase(); 
+    document.getElementById('produkTitle').innerText = '📦 Produk ' + p.toUpperCase(); 
+    selectedProduk = null; 
+    customMode = false; 
+    document.getElementById('customBox').classList.add('hidden'); 
+    const sub = document.getElementById('subGame'); 
+    sub.innerHTML = ''; 
+    sub.classList.add('hidden'); 
+    document.getElementById('khususTelkom').classList.add('hidden'); 
+    
+    if(p == 'ml'){
+        sub.classList.remove('hidden'); 
+        sub.innerHTML = `<button onclick="setSubGame('diamond')" class="px-3.5 py-1.5 rounded-full bg-blue-600 text-xs font-bold">💎 Diamond ML</button><button onclick="setSubGame('wdp')" class="px-3.5 py-1.5 rounded-full glass text-xs">📅 WDP</button>`; 
+        curKategori = 'diamond'; 
+        renderKategori(); 
+        renderProduk();
+    } else if(p == 'ff'){
+        sub.classList.remove('hidden'); 
+        sub.innerHTML = `<button onclick="setSubGame('diamond')" class="px-3.5 py-1.5 rounded-full bg-orange-600 text-xs font-bold">💎 Diamond FF</button><button onclick="setSubGame('membership')" class="px-3.5 py-1.5 rounded-full glass text-xs">👑 Membership</button>`; 
+        curKategori = 'diamond'; 
+        renderKategori(); 
+        renderProduk();
+    } else {
+        if(p == 'telkomsel') document.getElementById('khususTelkom').classList.remove('hidden'); 
+        curKategori = Object.keys(PRODUCTS[p])[0]; 
+        renderKategori(); 
+        renderProduk();
+    }
+    go(2);
+}
+
+function setSubGame(k){ curKategori = k; renderKategori(); renderProduk(); }
+
+function renderKategori(){
+    const tabs = document.getElementById('kategoriTabs'); 
+    tabs.innerHTML = ''; 
+    Object.keys(PRODUCTS[curProv]).forEach(cat => {
+        if(cat == 'khusus') return; 
+        const btn = document.createElement('button'); 
+        const isActive = cat == curKategori; 
+        btn.className = isActive ? 'px-3.5 py-1.5 rounded-full bg-green-500 text-white text-[11px] font-bold shadow-md' : 'px-3.5 py-1.5 rounded-full glass text-[11px] border border-white/10 text-gray-300'; 
+        btn.innerText = cat.replace('_',' ').toUpperCase(); 
+        btn.onclick = () => { curKategori = cat; renderKategori(); renderProduk(); }; 
+        tabs.appendChild(btn);
+    }); 
+    const btn2 = document.createElement('button'); 
+    btn2.className = customMode ? 'px-3.5 py-1.5 rounded-full bg-yellow-500 text-black text-[11px] font-bold' : 'px-3.5 py-1.5 rounded-full glass text-[11px] border border-dashed border-yellow-400/50 text-yellow-300'; 
+    btn2.innerText = '✏️ KETIK SENDIRI'; 
+    btn2.onclick = () => { customMode = true; document.getElementById('customBox').classList.remove('hidden'); document.getElementById('produkList').innerHTML = ''; renderKategori(); }; 
+    tabs.appendChild(btn2);
+}
+
+function renderProduk(){
+    if(customMode) return; 
+    const list = document.getElementById('produkList'); 
+    list.innerHTML = ''; 
+    (PRODUCTS[curProv][curKategori] || []).forEach(prod => {
+        const div = document.createElement('div'); 
+        div.className = 'prod-card p-3.5 flex justify-between items-center cursor-pointer'; 
+        div.innerHTML = `<div><div class="flex items-center gap-2"><span class="gb-badge">${prod.gb}</span><span class="text-[10px] text-gray-300">${prod.hari}</span></div><div class="font-bold text-xs mt-1.5">${prod.name}</div></div><div class="harga-badge">${prod.label}</div>`; 
+        div.onclick = () => {
+            selectedProduk = prod; 
+            customMode = false; 
+            document.getElementById('customBox').classList.add('hidden'); 
+            go(4); 
+        }; 
+        list.appendChild(div);
+    });
+}
+
+function toggleCekNomor(){ document.getElementById('cekNomorBox').classList.toggle('hidden'); }
+
+function prosesCekTelkomsel(){
+    const inputNomor = document.getElementById('cekTelkomNomor').value.trim();
+    if(!inputNomor || inputNomor.length < 10 || !inputNomor.startsWith('08')){
+        showNotif('Nomor Telkomsel Salah', 'Masukkan nomor HP Telkomsel yang valid (min. 10 digit diawali 08).');
+        return;
+    }
+    document.getElementById('nomor').value = inputNomor;
+    if(!document.getElementById('nama').value){
+        document.getElementById('nama').value = "Pelanggan Telkomsel";
+    }
+    selectedProduk = { name: `Paket Telkomsel Custom (${inputNomor})`, label: "Sesuai Cek System", harga: 15000 };
+    selectedBayar = "qris";
+    go(5);
+}
+
+function convertCRC16(str){
+    let crc = 0xFFFF; 
+    for(let c = 0; c < str.length; c++){
+        crc ^= str.charCodeAt(c) << 8; 
+        for(let i = 0; i < 8; i++) crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+    } 
+    return ("000" + (crc & 0xFFFF).toString(16).toUpperCase()).slice(-4);
+}
+
+function generateQRISValid(amount){
+    try{
+        document.getElementById('qrisLoader').style.display = 'block'; 
+        document.getElementById('qrcodeContainer').innerHTML = ''; 
+        let base = QRIS_BASE_VALID.slice(0, -4); 
+        let step1 = base.replace("010211", "010212"); 
+        let parts = step1.split("5802ID"); 
+        let uang = "54" + ("0" + amount.toString().length).slice(-2) + amount + "5802ID"; 
+        let result = parts[0] + uang + parts[1]; 
+        result += convertCRC16(result); 
+        document.getElementById('qrisRaw').innerText = result; 
+        if(qrisObj){
+            qrisObj.update({ data: result });
+        } else {
+            qrisObj = new QRCodeStyling({ width: 220, height: 220, type: "svg", data: result, dotsOptions: { color: "#000", type: "rounded" }, backgroundOptions: { color: "#fff" }, cornersSquareOptions: { color: "#00c853", type: "extra-rounded" } }); 
+            qrisObj.append(document.getElementById('qrcodeContainer'));
+        } 
+        document.getElementById('qrisLoader').style.display = 'none';
+    }catch(e){
+        document.getElementById('qrisLoader').innerHTML = '<p class="text-red-400 text-xs">Gagal merakit QRIS</p>';
+    }
+}
+
+function regenerateQRIS(){ generateQRISValid(lastAmount); }
+
+function setBayar(m){
+    selectedBayar = m; 
+    document.querySelectorAll('[id^=bayar-]').forEach(e => e.classList.remove('ring-2', 'ring-green-400')); 
+    document.getElementById('bayar-' + m).classList.add('ring-2', 'ring-green-400'); 
+    document.getElementById('qrisArea').classList.add('hidden'); 
+    document.getElementById('tfArea').classList.add('hidden'); 
+    document.getElementById('hutangArea').classList.add('hidden'); 
+    document.getElementById('btnToJadwal').classList.remove('opacity-50', 'pointer-events-none'); 
+    
+    let prodName = customMode ? document.getElementById('customInput').value || 'Custom' : (selectedProduk ? selectedProduk.name : 'Custom'); 
+    let prodHarga = customMode ? 10000 : (selectedProduk ? selectedProduk.harga : 10000); 
+    let prodLabel = customMode ? 'Custom' : (selectedProduk ? selectedProduk.label : 'Custom'); 
+    
+    if(m == 'qris'){
+        document.getElementById('qrisArea').classList.remove('hidden'); 
+        document.getElementById('qrisProduk').innerText = prodName; 
+        document.getElementById('qrisNominal').innerText = prodLabel; 
+        document.getElementById('qrisTotalDisplay').innerText = prodLabel; 
+        lastAmount = prodHarga; 
+        generateQRISValid(prodHarga);
+    } else if(m == 'transfer'){
+        document.getElementById('tfArea').classList.remove('hidden'); 
+        document.getElementById('tfNominal').innerText = prodLabel;
+    } else {
+        document.getElementById('hutangArea').classList.remove('hidden'); 
+        document.getElementById('hutangProduk').innerText = prodName; 
+        document.getElementById('hutangNominal').innerText = prodLabel;
+    }
+}
+
+function copyText(t){ navigator.clipboard.writeText(t); showNotif('Berhasil Disalin', `Teks telah disalin.`); }
+function copyNominal(){ navigator.clipboard.writeText(lastAmount); showNotif('Nominal Disalin', `Nominal berhasil disalin.`); }
+
+function updateRingkasan(){
+    const nama = document.getElementById('nama').value || '-'; 
+    const nomor = document.getElementById('nomor').value || '-'; 
+    let prodName = customMode ? (document.getElementById('customInput').value || 'Custom') : (selectedProduk ? selectedProduk.name : '-'); 
+    let prodLabel = customMode ? 'Custom' : (selectedProduk ? selectedProduk.label : '-'); 
+    const tgl = document.getElementById('tgl').value || '-'; 
+    const jam = document.getElementById('jam').value || '-'; 
+    
+    let bayarLabel = selectedBayar || 'qris';
+    
+    document.getElementById('ringkasan').innerHTML = `
+        <div class="space-y-1 text-xs leading-relaxed">
+          <div class="font-bold text-yellow-400 mb-2">ORDER PAKET PREMIUM - BARU</div>
+          <div><b>DATA PELANGGAN:</b></div>
+          <div>👤 Nama: ${nama}</div>
+          <div>📱 No Tujuan: ${nomor}</div>
+          <div class="mt-2"><b>DETAIL PESANAN:</b></div>
+          <div>📶 Provider: ${curProv ? curProv.toLowerCase() : '-'}</div>
+          <div>📂 Kategori: ${curKategori ? curKategori.toLowerCase() : '-'}</div>
+          <div>📦 Produk: ${prodName}</div>
+          <div>💰 Harga: <span class="text-green-300 font-bold">${prodLabel}</span></div>
+          <div class="mt-2"><b>PEMBAYARAN:</b></div>
+          <div>💳 Metode: ${bayarLabel}</div>
+          <div>📅 Tgl Bayar: ${tgl}</div>
+          <div>⏰ Jam Bayar: ${jam}</div>
+        </div>
+    `;
+}
+
+function sendWA(){
+    const nama = document.getElementById('nama').value || ''; 
+    const nomor = document.getElementById('nomor').value || ''; 
+    const tgl = document.getElementById('tgl').value || ''; 
+    const jam = document.getElementById('jam').value || ''; 
+    
+    if(!tgl || !jam){ 
+        showNotif('Jadwal Belum Lengkap', 'Tentukan tanggal dan jam rencana pembayaran Anda.'); 
+        return; 
+    }
+    
+    let prodName = customMode ? (document.getElementById('customInput').value || 'Custom') : (selectedProduk ? selectedProduk.name : 'Custom'); 
+    let prodLabel = customMode ? 'Custom' : (selectedProduk ? selectedProduk.label : 'Custom'); 
+    
+    let bayarLabel = selectedBayar || 'qris';
+    
+    const text = `*ORDER PAKET PREMIUM - BARU*%0A%0A` +
+               `*══ DATA PELANGGAN ══*%0A` +
+               `👤 Nama: ${encodeURIComponent(nama)}%0A` +
+               `📱 No Tujuan: ${encodeURIComponent(nomor)}%0A%0A` +
+               `*══ DETAIL PESANAN ══*%0A` +
+               `📶 Provider: ${encodeURIComponent(curProv ? curProv.toLowerCase() : '-')}%0A` +
+               `📂 Kategori: ${encodeURIComponent(curKategori ? curKategori.toLowerCase() : '-')}%0A` +
+               `📦 Produk: ${encodeURIComponent(prodName)}%0A` +
+               `💰 Harga: ${encodeURIComponent(prodLabel)}%0A%0A` +
+               `*══ PEMBAYARAN ══*%0A` +
+               `💳 Metode: ${encodeURIComponent(bayarLabel)}%0A` +
+               `📅 Tgl Bayar: ${encodeURIComponent(tgl)}%0A` +
+               `⏰ Jam Bayar: ${encodeURIComponent(jam)}%0A%0A` +
+               `Mohon diproses`;
+               
+    window.open(`https://wa.me/62817320851?text=${text}`, '_blank');
+}
+
+document.getElementById('tgl').valueAsDate = new Date();
+
+document.getElementById('customInput').addEventListener('input', () => {
+    if(document.getElementById('customInput').value){
+        selectedProduk = { name: document.getElementById('customInput').value, label: 'Custom', harga: 10000 }; 
+        go(4); 
+    }
+});
+</script>
+</body>
+</html>
